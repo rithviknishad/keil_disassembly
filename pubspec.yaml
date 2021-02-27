@@ -13,7 +13,8 @@ dependencies:
   cupertino_icons: ^1.0.2
 
   url_launcher: ^5.7.10
-  buy_me_a_coffee_widget: ^1.0.1
+
+  google_fonts: ^1.1.2
 
   flutter_animator: ^2.1.0 # not null safe
 
@@ -23,6 +24,9 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/bmc_icon.png
 
   fonts:
     - family: CascadiaCode
