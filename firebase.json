@@ -1,6 +1,7 @@
 {
   "hosting": {
-    "public": "public",
+    "site": "smashkeil",
+    "public": "build/web",
     "ignore": [
       "firebase.json",
       "**/.*",

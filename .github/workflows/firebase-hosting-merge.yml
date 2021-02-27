@@ -34,6 +34,13 @@ jobs:
       - run: flutter config --enable-web
       - run: flutter build web --web-renderer html --release --tree-shake-icons
 
+      - name: Firebase deploy
+        uses: w9jds/firebase-action@v1.5.0
+        with:
+          args: deploy --token "$FIREBASE_TOKEN"
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEIL_DISASSEMBLY }}
+
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
