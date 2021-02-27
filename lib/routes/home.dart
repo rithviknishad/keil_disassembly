@@ -106,6 +106,26 @@ class _MyHomePageState extends State<MyHomePage> {
                     alignment: Alignment.centerLeft,
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
+                      "How am I useful?",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      "Repetitive useless tasks are not for humans. This tool helps you fill up that disassembly table within seconds.\n\n\n"
+                      "Time complexity to fill that table without this tool: O(n).\n"
+                      "Time complexity to fill that table without this tool: O(1).\n\n",
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
                       "Usage instructions: ",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
