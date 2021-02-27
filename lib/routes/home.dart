@@ -11,14 +11,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,11 +20,19 @@ class _MyHomePageState extends State<MyHomePage> {
       body: CupertinoScrollbar(
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text("Hello"),
-            ],
+          child: Center(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: 800),
+              child: Material(
+                color: Colors.white,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text("Hello"),
+                  ],
+                ),
+              ),
+            ),
           ),
         ),
       ),
