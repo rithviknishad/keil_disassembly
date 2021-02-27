@@ -1,7 +1,9 @@
 import 'package:buy_me_a_coffee_widget/buy_me_a_coffee_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_animator/flutter_animator.dart';
+import 'package:keil_disassembly/partials/animprefs.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage();
@@ -13,9 +15,23 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: theme.primaryColor,
+      statusBarIconBrightness: Brightness.light,
+    ));
+
     return Scaffold(
       appBar: AppBar(
-        title: Text("Smash Keil Disassembly Clipboard Generator"),
+        title: FadeInLeft(
+          preferences: animPref400,
+          child: Text(
+            'Keil Disassembly RegEx Clipboard Generator Tool',
+            style: TextStyle(
+                fontWeight: FontWeight.w400, color: theme.primaryColor),
+          ),
+        ),
       ),
       body: CupertinoScrollbar(
         child: SingleChildScrollView(
@@ -23,12 +39,18 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Center(
             child: ConstrainedBox(
               constraints: BoxConstraints(maxWidth: 800),
-              child: Material(
+              child: Card(
                 color: Colors.white,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text("Hello"),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SizedBox(
+                        height: 400,
+                        child: TextField(),
+                      ),
+                    )
                   ],
                 ),
               ),

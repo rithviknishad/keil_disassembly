@@ -6,12 +6,77 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  static const _primary = Color.fromARGB(255, 0, 38, 70);
+  static const _accent = Color.fromARGB(255, 245, 248, 253);
+  static const _secondary = Color(0xFFFFCA28);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Keil Disassembly Tool by rithviknishad',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        fontFamily: 'Ubuntu',
+        brightness: Brightness.light,
+        primaryColor: _primary,
+        accentColor: _accent,
+        appBarTheme: AppBarTheme(
+          brightness: Brightness.light,
+          color: Colors.white,
+          elevation: 0,
+          actionsIconTheme: const IconThemeData(color: _primary),
+        ),
+        iconTheme: const IconThemeData(color: _primary),
+
+        scaffoldBackgroundColor: _accent,
+        snackBarTheme: const SnackBarThemeData(
+          backgroundColor: _primary,
+          actionTextColor: _secondary,
+          disabledActionTextColor: Colors.grey,
+          contentTextStyle: TextStyle(color: Colors.white),
+        ),
+
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(_primary),
+            textStyle: MaterialStateProperty.all(TextStyle(
+              fontFamily: 'Ubuntu',
+              color: _accent,
+              fontWeight: FontWeight.w500,
+            )),
+          ),
+        ),
+
+        // Bottom Navigation Bar Theme
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: _primary,
+          selectedItemColor: _secondary,
+          unselectedItemColor: Colors.blueGrey,
+          type: BottomNavigationBarType.fixed,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          filled: true,
+          fillColor: _accent,
+          enabledBorder: UnderlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide.none,
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(color: _primary),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(color: Colors.red),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(color: Colors.red),
+          ),
+          labelStyle: const TextStyle(color: _primary, fontSize: 14),
+          focusColor: _primary,
+        ),
       ),
       initialRoute: '/',
       routes: {

@@ -15,6 +15,8 @@ dependencies:
   url_launcher: ^5.7.10
   buy_me_a_coffee_widget: ^1.0.1
 
+  flutter_animator: ^2.1.0 # not null safe
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
