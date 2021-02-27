@@ -137,7 +137,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       "1. After debugging the program, select the first disassembly output line.\n\n"
-                      "2. Hold the `Shift + Down Arrow` key, until the last line NOP.\n\n"
+                      "2. Hold `Shift + Down Arrow` key, until the last line NOP.\n\n"
                       "3. `Ctrl + C` or right click and copy (if you are a mouse).\n\n"
                       "4. Paste it below in the text field before Stage 1.\n\n"
                       "5. Make sure you add the necessary empty rows in your table before proceeding.\n\n"
