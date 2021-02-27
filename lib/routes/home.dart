@@ -36,32 +36,11 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
-      floatingActionButton: InkWell(
-        onTap: () async {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                "opening www.buymeacoff.ee/rithviknishad in a new tab",
-              ),
-            ),
-          );
-          var urlString = "https://www.buymeacoff.ee/rithviknishad";
-          if (await canLaunch(urlString)) {
-            await launch(urlString);
-          } else {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text("Coffee out-of-stock"),
-              ),
-            );
-          }
-        },
-        child: Container(
-          width: 217.0,
-          child: BuyMeACoffeeWidget(
-            sponsorID: "rithviknishad",
-            theme: OrangeTheme(),
-          ),
+      floatingActionButton: Container(
+        width: 217.0,
+        child: BuyMeACoffeeWidget(
+          sponsorID: "rithviknishad",
+          theme: OrangeTheme(),
         ),
       ),
     );

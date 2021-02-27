@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Smash Keil Tools',
+      title: 'Keil Disassembly Tool by rithviknishad',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
