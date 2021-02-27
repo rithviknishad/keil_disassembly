@@ -2,20 +2,41 @@
 # https://github.com/firebase/firebase-tools
 
 name: Deploy to Firebase Hosting on merge
-'on':
+"on":
   push:
     branches:
       - main
+
+env:
+  flutter_version: "1.26.0-17.8.pre"
+  java_version: "12.x"
+
 jobs:
   build_and_deploy:
+    name: Build and Deploy
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: Cache Flutter dependencies
+        uses: actions/cache@v1
+        with:
+          path: /opt/hostedtoolcache/flutter
+          key: ${{ runner.OS }}-flutter-cache-${{ env.flutter_version }}
+
+      - name: Setup flutter
+        uses: subosito/flutter-action@v1.4.0
+        with:
+          flutter-version: ${{ env.flutter_version }}
+          channel: beta
+
+      - run: flutter pub get
       - run: flutter build web --web-renderer html --release --tree-shake-icons
+
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEIL_DISASSEMBLY }}'
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEIL_DISASSEMBLY }}"
           channelId: live
           projectId: keil-disassembly
         env:
