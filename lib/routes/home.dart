@@ -148,6 +148,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       }),
                     ),
                   ),
+                  if (stage1Output != null)
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        "# of rows in export: ${stage1Output.split('\n').length}",
+                      ),
+                    ),
                   StageOutput(
                     stageNumber: 1,
                     method: r"replaceAll(r'^\s{0}\d{1}:.+\n', '')",
