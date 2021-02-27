@@ -25,6 +25,10 @@ flutter:
   uses-material-design: true
 
   fonts:
+    - family: CascadiaCode
+      fonts:
+        - asset: assets/fonts/CascadiaCode.ttf
+
     - family: Ubuntu
       fonts:
         - asset: assets/fonts/Ubuntu-Regular.ttf

@@ -13,9 +13,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Keil Disassembly Tool by rithviknishad',
       theme: ThemeData(
-        fontFamily: 'Ubuntu',
+        fontFamily: 'CascadiaCode',
         brightness: Brightness.light,
         primaryColor: _primary,
         accentColor: _accent,
