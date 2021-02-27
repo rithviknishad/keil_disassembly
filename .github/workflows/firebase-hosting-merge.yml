@@ -32,7 +32,7 @@ jobs:
 
       - run: flutter pub get
       - run: flutter config --enable-web
-      - run: flutter build web --web-renderer html --release --tree-shake-icons
+      - run: flutter build web --web-renderer html --release --no-tree-shake-icons
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
