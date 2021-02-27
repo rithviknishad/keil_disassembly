@@ -118,7 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Text(
                       "Repetitive useless tasks are not for humans. This tool helps you fill up that disassembly table within seconds.\n\n\n"
                       "Time complexity to fill that table without this tool: O(n).\n"
-                      "Time complexity to fill that table without this tool: O(1).\n\n",
+                      "Time complexity to fill that table with this tool: O(1).\n\n",
                     ),
                   ),
                   SizedBox(height: 20),
