@@ -39,7 +39,7 @@ jobs:
         with:
           args: deploy --token "$FIREBASE_TOKEN"
         env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEIL_DISASSEMBLY }}
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
