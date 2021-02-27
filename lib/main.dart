@@ -35,17 +35,6 @@ class MyApp extends StatelessWidget {
           contentTextStyle: TextStyle(color: Colors.white),
         ),
 
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(_primary),
-            textStyle: MaterialStateProperty.all(TextStyle(
-              fontFamily: 'Ubuntu',
-              color: _accent,
-              fontWeight: FontWeight.w500,
-            )),
-          ),
-        ),
-
         // Bottom Navigation Bar Theme
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           backgroundColor: _primary,

@@ -15,6 +15,7 @@ dependencies:
   url_launcher: ^5.7.10
 
   google_fonts: ^1.1.2
+  flutter_icons: ^1.1.0
 
   flutter_animator: ^2.1.0 # not null safe
 
@@ -32,24 +33,3 @@ flutter:
     - family: CascadiaCode
       fonts:
         - asset: assets/fonts/CascadiaCode.ttf
-
-    - family: Ubuntu
-      fonts:
-        - asset: assets/fonts/Ubuntu-Regular.ttf
-        - asset: assets/fonts/Ubuntu-Italic.ttf
-          style: italic
-        - asset: assets/fonts/Ubuntu-Light.ttf
-          weight: 300
-        - asset: assets/fonts/Ubuntu-LightItalic.ttf
-          weight: 300
-          style: italic
-        - asset: assets/fonts/Ubuntu-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/Ubuntu-MediumItalic.ttf
-          weight: 500
-          style: italic
-        - asset: assets/fonts/Ubuntu-Bold.ttf
-          weight: 700
-        - asset: assets/fonts/Ubuntu-BoldItalic.ttf
-          weight: 700
-          style: italic

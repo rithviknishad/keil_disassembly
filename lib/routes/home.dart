@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animator/flutter_animator.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:keil_disassembly/partials/animprefs.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -47,9 +49,42 @@ class _MyHomePageState extends State<MyHomePage> {
                 fontWeight: FontWeight.w400, color: theme.primaryColor),
           ),
         ),
+        actions: [
+          if (kIsWeb)
+            TextButton.icon(
+              label: Text("See code at GitHub"),
+              icon: Icon(AntDesign.github),
+              onPressed: () async {
+                var urlString =
+                    "https://github.com/rithviknishad/keil_disassembly";
+
+                if (await canLaunch(urlString))
+                  await launch(urlString);
+                else
+                  throw "Something went wrong!";
+              },
+            ),
+          if (kIsWeb) SizedBox(width: 30),
+          if (kIsWeb)
+            TextButton.icon(
+              label: Text("Support"),
+              icon: Icon(Feather.heart),
+              onPressed: () async {
+                var urlString = "https://buymeacoffee.com/rithviknishad/";
+
+                if (await canLaunch(urlString))
+                  await launch(urlString);
+                else
+                  throw "Something went wrong!";
+              },
+            ),
+          if (kIsWeb) SizedBox(width: 30),
+        ],
       ),
       body: CupertinoScrollbar(
         isAlwaysShown: true,
+        thickness: 6,
+        thicknessWhileDragging: 16,
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Center(
@@ -61,11 +96,38 @@ class _MyHomePageState extends State<MyHomePage> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   )),
-              margin: const EdgeInsets.all(10),
+              margin: const EdgeInsets.symmetric(vertical: 30, horizontal: 10),
               padding: const EdgeInsets.all(8),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  SizedBox(height: 20),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      "Usage instructions: ",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      "1. After debugging the program, select the first disassembly output line.\n\n"
+                      "2. Hold the `Shift + Down Arrow` key, until the last line NOP.\n\n"
+                      "3. `Ctrl + C` or right click and copy (if you are a mouse).\n\n"
+                      "4. Paste it below in the text field before Stage 1.\n\n"
+                      "5. Make sure you add the necessary empty rows in your table before proceeding.\n\n"
+                      "6. Stage 2, 3 and 4 are the column-wise filtered output. Copy each of the columns required.\n\n"
+                      "7. Drag and select the column cells for which to be pasted.\n\n"
+                      "8. `Ctrl + V`\n\n"
+                      "\n"
+                      "Yipee! Now you got more time to sleep!\n\n",
+                    ),
+                  ),
                   SizedBox(height: 20),
                   Container(
                     alignment: Alignment.centerLeft,
@@ -167,78 +229,76 @@ class StageOutput extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            alignment: Alignment.centerLeft,
-            padding: const EdgeInsets.all(8.0),
-            child: Wrap(
-              alignment: WrapAlignment.start,
-              spacing: 8,
-              runSpacing: 8,
-              children: [
-                Text("Stage $stageNumber :"),
-                Text(
-                  method,
-                  style: TextStyle(color: theme.unselectedWidgetColor),
-                ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton.icon(
-                    onPressed: () async {
-                      if (output == null) {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text("Nothing to copy!"),
-                          backgroundColor: theme.errorColor,
-                        ));
-
-                        return;
-                      }
-                      final data = ClipboardData(text: output ?? "");
-                      await Clipboard.setData(data);
-
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text("Stage $stageNumber output copied!"),
-                      ));
-                    },
-                    icon: Icon(CupertinoIcons.doc_on_clipboard),
-                    label: Text('Copy output'),
+    return FadeInUp(
+      preferences: animPref400,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 50),
+            Container(
+              alignment: Alignment.centerLeft,
+              padding: const EdgeInsets.all(8.0),
+              child: Wrap(
+                alignment: WrapAlignment.start,
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  Text("Stage $stageNumber :"),
+                  Text(
+                    method,
+                    style: TextStyle(color: theme.unselectedWidgetColor),
                   ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.all(16),
-            decoration: ShapeDecoration(
-                shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-            )),
-            constraints: BoxConstraints(maxHeight: 200),
-            child: CupertinoScrollbar(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.all(8),
-                scrollDirection: Axis.horizontal,
-                child: CupertinoScrollbar(
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    padding: const EdgeInsets.all(8),
-                    child: Text(
-                      output ?? "No data provided",
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                          color: theme.primaryColor.withOpacity(0.75)),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton.icon(
+                      onPressed: () async {
+                        if (output == null) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text("Nothing to copy!"),
+                            backgroundColor: theme.errorColor,
+                          ));
+
+                          return;
+                        }
+                        final data = ClipboardData(text: output ?? "");
+                        await Clipboard.setData(data);
+
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text("Stage $stageNumber output copied!"),
+                        ));
+                      },
+                      icon: Icon(CupertinoIcons.doc_on_clipboard),
+                      label: Text('Copy output'),
                     ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: ShapeDecoration(
+                  color: Colors.grey[50].withOpacity(0.5),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  )),
+              child: CupertinoScrollbar(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(8),
+                  scrollDirection: Axis.horizontal,
+                  child: Text(
+                    output ?? "No data provided",
+                    textAlign: TextAlign.left,
+                    style:
+                        TextStyle(color: theme.primaryColor.withOpacity(0.75)),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
