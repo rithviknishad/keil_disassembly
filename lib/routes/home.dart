@@ -157,6 +157,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextField(
+                      style: TextStyle(fontSize: 12),
                       controller: rawDisassemblyController,
                       cursorRadius: Radius.circular(10),
                       cursorHeight: 24,
@@ -319,8 +320,10 @@ class StageOutput extends StatelessWidget {
                   child: Text(
                     output ?? "No data provided",
                     textAlign: TextAlign.left,
-                    style:
-                        TextStyle(color: theme.primaryColor.withOpacity(0.75)),
+                    style: TextStyle(
+                      color: theme.primaryColor.withOpacity(0.75),
+                      fontSize: 12.0,
+                    ),
                   ),
                 ),
               ),
