@@ -1,5 +1,5 @@
 name: keil_disassembly
-description: A new Flutter project.
+description: Tool to generated column-data from disassembly output of assembly program.
 publish_to: "none"
 version: 1.0.0+1
 
