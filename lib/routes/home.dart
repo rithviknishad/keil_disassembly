@@ -179,24 +179,24 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   StageOutput(
                     stageNumber: 1,
-                    method: r"replaceAll(r'^\s{0}\d{1}:.+\n', '')",
+                    method: r"replaceAll(r'^\s{0,}\d{1,}:.+\n', '')",
                     output: stage1Output,
                   ),
                   StageOutput(
                     stageNumber: 2,
-                    method: r"stage1.replaceAll(r'\s{2}.+', '')",
+                    method: r"stage1.replaceAll(r'\s{2,}.+', '')",
                     output: stage2Output,
                   ),
                   StageOutput(
                     stageNumber: 3,
                     method:
-                        r"stage1.replaceAll(r'^C:0x\w{1}\s{0}', '').replaceAll(r'\s{1,}.+$(\n|)', '\n')",
+                        r"stage1.replaceAll(r'^C:0x\w{1,}\s{0,}', '').replaceAll(r'\s{1,}.+$(\n|)', '\n')",
                     output: stage3Output,
                   ),
                   StageOutput(
                     stageNumber: 4,
                     method:
-                        r"stage1.replaceAll(r'^C:0x\w{1}\s{0}', '').replaceAll(r'\s{1,}.+$(\n|)', '\n')",
+                        r"stage1.replaceAll(r'^C:0x\w{1,}\s{0,}\w{1,}\s{0,}', '')",
                     output: stage4Output,
                   ),
                 ],
